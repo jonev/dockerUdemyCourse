@@ -17,7 +17,7 @@ class App extends Component {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Hei der!!
+            Testing auto deploy!
           </a>
         </header>
       </div>
