@@ -3,7 +3,21 @@ services:
     - docker
 
 before_install:
-    - docker build -t jonev/dokerudemycourse -f Dockerfile.dev .
+    - docker build -t jonev/dockerudemycourse -f Dockerfile.dev .
     
 script:
-    - docker run jonev/dokerudemycourse npm run test -- --coverage
+    - docker run jonev/dockerudemycourse npm run test -- --coverage
+    
+deploy:
+    provider: elasticbeanstalk
+    region: "us-east-2"
+    app: "docker"
+    env: "Docker-env"
+    bucket_name: "elasticbeanstalk-us-east-2-703323469193"
+    bucket_path: "docker"
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key:
+        secure: "$AWS_SECRET_KEY"
+    
